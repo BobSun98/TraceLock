@@ -14,6 +14,8 @@ Learning-to-PD/L2P, listeners, self-training, reinforcement learning, and ablati
 
 TraceLock is a lightweight controller for frozen diffusion language models: it learns from completed traces whether a proposed token already matches its final trace value, then uses hidden-state features to decide which active tokens to lock during decoding.
 
+![TraceLock overview](assets/tracelock_overview.png)
+
 ## Too Long; Didn't Read
 
 Pick a large external workspace, run setup, generate traces, train, then evaluate:

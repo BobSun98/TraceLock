@@ -1,14 +1,12 @@
 # TraceLock
 
-TraceLock learns a token-level acceptance policy for Dream-style masked diffusion generation. It does not train a new language model. Dream proposes tokens, and TraceLock decides which currently masked positions should be locked for the remaining refinement steps.
+TraceLock learns a token-level acceptance policy for masked diffusion generation. It does not train a new language model. Dream proposes tokens, and TraceLock decides which currently masked positions should be locked for the remaining refinement steps.
 
 This release contains the minimal Dream path used for the math and coding experiments:
 
 1. Generate Dream training traces from GSM8K, Alpaca-Cleaned, and KodCode-HumanEval-like prompts.
 2. Train the TraceLock acceptance policy on projected Dream hidden-state traces.
 3. Evaluate random, native confidence, native entropy, Fast-dLM, and TraceLock on GSM8K and HumanEval.
-
-Learning-to-PD/L2P, listeners, self-training, reinforcement learning, and ablation-only utilities are intentionally excluded from this open-source path.
 
 ## Method Overview
 

@@ -1,0 +1,19 @@
+name: tracelock
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch
+  - pytorch-cuda=12.1
+  - numpy
+  - scikit-learn
+  - tqdm
+  - pip:
+      - accelerate
+      - datasets
+      - huggingface_hub
+      - safetensors
+      - transformers==4.46.2

@@ -1,0 +1,72 @@
+{
+  "experiment_name": "tracelock-gsm8k-256-128",
+  "gpus": ["cuda:0"],
+  "dataset": "gsm8k",
+  "split": "test",
+  "seed": 42,
+  "num_samples": 1300,
+  "output_root": "${TRACELOCK_HOME}/runs/eval",
+  "overwrite": false,
+  "local_files_only": true,
+  "dlm_model_name": "${TRACELOCK_HOME}/models/dream-v0-instruct-7b",
+  "torch_dtype": "bfloat16",
+  "judge": {
+    "python": "${TRACELOCK_PYTHON}",
+    "model_name": "Qwen/Qwen2.5-7B-Instruct",
+    "task_type": "acc",
+    "acc_final_answer_only": true,
+    "torch_dtype": "bfloat16",
+    "batch_size": 1,
+    "max_input_length": 8192,
+    "max_new_tokens": 1024,
+    "temperature": 0.0,
+    "json_mode": true
+  },
+  "sets": [
+    {
+      "name": "random",
+      "gen_method": "random",
+      "gen_length": 256,
+      "gen_steps": 256,
+      "block_len": 128,
+      "candidate_num": 0
+    },
+    {
+      "name": "native-confidence",
+      "gen_method": "low_confidence",
+      "gen_length": 256,
+      "gen_steps": 256,
+      "block_len": 128,
+      "candidate_num": 1
+    },
+    {
+      "name": "native-entropy",
+      "gen_method": "native_entropy",
+      "gen_length": 256,
+      "gen_steps": 256,
+      "block_len": 128,
+      "candidate_num": 2
+    },
+    {
+      "name": "fast-dlm-th0.9",
+      "gen_method": "fast_dlm",
+      "gen_length": 256,
+      "gen_steps": 256,
+      "block_len": 128,
+      "threshold": 0.9,
+      "candidate_num": 3
+    },
+    {
+      "name": "tracelock",
+      "gen_method": "tracelock_soft_crop",
+      "gen_length": 256,
+      "pointer_window_size": 128,
+      "dynamic_threshold": true,
+      "tracelock_threshold": 0.99,
+      "tracelock_checkpoint": "${TRACELOCK_CHECKPOINT_DIR}/best_rollout_proxy_f0_5.pt",
+      "tracelock_config": "${TRACELOCK_CHECKPOINT_DIR}/config.json",
+      "projection_checkpoint": "${TRACELOCK_HOME}/checkpoints/dream-ae-v1/best_val_loss.pt",
+      "candidate_num": 4
+    }
+  ]
+}

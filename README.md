@@ -41,6 +41,7 @@ No manual `conda activate` is needed. The scripts call `$TRACELOCK_HOME/conda/tr
 
 Use a workspace with at least **350 GB free** for the 7000-trace reproduction. We observed about **245 GB** for the generated trace directory, plus about **37 GB** for Conda, Dream, Qwen judge weights, datasets, and checkpoints. More space is needed if you increase `--num-samples`; the trace generator has a conservative 600 GB run-dir cap.
 
+
 ## Reproduced Results
 
 The following numbers are from the 7000-trace run above with Dream-v0-Instruct-7B, Qwen2.5-7B-Instruct as the GSM8K judge, and 8x NVIDIA A40 GPUs.
@@ -64,6 +65,23 @@ The following numbers are from the 7000-trace run above with Dream-v0-Instruct-7
 | native-entropy |     0.6585 |        256.00 |
 | fast-dLM-th0.9 |     0.4962 |        140.07 |
 | TraceLock | **0.8223** |    **116.14** |
+
+
+## Citation
+
+If you find this work useful, please cite:
+
+```bibtex
+@misc{sun2026pathmatters,
+  title={The Path Matters: Learning a Token-Commitment Policy for Diffusion Language Models},
+  author={Bohang Sun and Max Zhu and Francesco Caso and Jindong Gu and Junchi Yu and Philip Torr and Pietro Liò and Jialin Yu},
+  year={2026},
+  eprint={2605.24697},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2605.24697}
+}
+
 
 ## Workspace Layout
 
